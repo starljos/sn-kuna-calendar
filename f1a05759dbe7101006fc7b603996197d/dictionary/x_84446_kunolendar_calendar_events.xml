@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Calendar Events" max_length="40" name="x_84446_kunolendar_calendar_events" sizeclass="69" type="collection">
+        <element label="Active" max_length="40" name="active" type="boolean"/>
+        <element label="End" max_length="40" name="end" type="glide_date_time"/>
+        <element label="Id" max_length="200" name="id" type="string"/>
+        <element label="Internal End" max_length="100" name="internal_end" type="string"/>
+        <element label="Internal Start" max_length="100" name="internal_start" type="string"/>
+        <element label="Name" max_length="400" name="name" type="string"/>
+        <element label="Payload" max_length="80000" name="payload" type="string"/>
+        <element label="Start" max_length="40" name="start" type="glide_date_time"/>
+        <element label="Status" max_length="40" name="status" type="string"/>
+    </element>
+</database>

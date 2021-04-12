@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_84446_kunolendar.Kunolendar</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>Kunolendar</name>
+        <script><![CDATA[var Kunolendar = Class.create();
+Kunolendar.prototype = {
+	initialize: function () {},
+
+	process: function () {
+
+		try {
+
+			var isWarzoneInCalendar = false;
+			var isFree = true;
+			var kunaSay = "";
+			var start = "";
+			var gr = new GlideRecord('x_84446_kunolendar_calendar_events');
+			gr.addEncodedQuery("startONToday@javascript:gs.beginningOfToday()@javascript:gs.endOfToday()");
+			gr.query();
+			if (gr.next()) {
+
+				if (gr.name + "" == "Warzonek")
+					isWarzoneInCalendar = true;
+
+				start = gr.start + '';
+				start = start.split(" ")[1];
+
+				start = start.substring(0, 2);
+				start = Number(start);
+
+				if (start > 17 && start < 19)
+					isFree = false;
+			}
+			if (!isWarzoneInCalendar) {
+				if (isFree) {
+					kunaSay = "Marek może grać.";
+
+					try {
+
+						var today = new GlideDate() + "";
+
+						var body = {
+							"end": {
+								"dateTime": today + "T20:00:00+02:00"
+							},
+							"start": {
+								"dateTime": today + "T18:00:00+02:00"
+							},
+							"summary": "Warzonek",
+							"colorId": "3"
+						};
+
+						// 				gs.info(JSON.stringify(body))
+
+						var r = new sn_ws.RESTMessageV2('x_84446_kuna_cloud.Google Calendar API', 'POST /calendars/calendarId/events');
+						r.setStringParameterNoEscape('calendarId', 'mr.polasik@gmail.com');
+						r.setRequestBody(JSON.stringify(body));
+
+						var response = r.execute();
+						var responseBody = response.getBody();
+						var httpStatus = response.getStatusCode();
+						// 				gs.info(responseBody)
+						if (httpStatus == 200)
+							kunaSay += " Wrzuciłam mu w kalendarz Warzonka";
+
+					} catch (ex) {
+						gs.error(ex.message);
+					}
+
+				} else {
+					kunaSay = "Marek ma coś w kalendarzu od " + start + " i nie pogra";
+				}
+				var sender = new x_84446_vector.SlackMessageSender(current.channel + '').postMsg(kunaSay);
+
+			}
+		} catch (e) {
+			gs.error("KUNALOG " + e);
+		}
+	},
+
+	refreshCalendarEvents: function () {
+		try {
+			var r = new sn_ws.RESTMessageV2('x_84446_kuna_cloud.Google Calendar API', 'GET /calendars/calendarId/events');
+			r.setStringParameterNoEscape('calendarId', 'mr.polasik@gmail.com');
+
+			var response = r.execute();
+			var responseBody = response.getBody();
+			var httpStatus = response.getStatusCode();
+
+			var tasksJson = JSON.parse(responseBody);
+			gs.info("Kuna Calendar retrieved " + tasksJson.items.length + " events");
+			gs.info("Kuna Calendar response " + responseBody);
+
+			tasksJson.items.forEach(function (item) {
+
+				gs.info(item.id);
+
+				var gr = new GlideRecord("x_84446_kunolendar_calendar_events");
+
+				if (!gr.get("id", item.id)) {
+					gr.newRecord();
+					gr = this.populateCalendarEventGr(gr, item);
+					gr.insert();
+				} else {
+					// TODO check if some properties changed
+					gr = this.populateCalendarEventGr(gr, item);
+					gr.update();
+				}
+			});
+
+		} catch (ex) {
+			gs.error(ex.message);
+		}
+
+
+	},
+
+
+	scheduleTask: function (todoGr) {
+
+		try {
+
+			// TODO
+			// Kalendarz Schaeffler
+
+	
+
+			var startTime = 16;
+			var maxTime = 24;
+			// TODO based on due date if exists
+			var maxDaysAhead = 14;
+			var gdt = new GlideDateTime();
+			gdt.addDaysLocalTime(1);
+			var date = "";
+			var curDaysAhead = 0;
+			var eventInitialStatus = "new" ;
+
+			if (todoGr.category == "Work"){
+				startTime = 8;
+				maxTime = 15;
+				eventInitialStatus = "new_work";
+			}
+
+
+			while (curDaysAhead < maxDaysAhead && !slotFound) {
+
+				var slotFound = false;
+				date = gdt.getLocalDate() + "";
+				gs.info(date);
+
+				var gr = new GlideRecord('x_84446_kunolendar_calendar_events');
+				var query = "";
+
+				// handle hours before 10 and add 0 before, ex 09:00:00
+				var zero = "";
+				if (startTime.length == 1)
+					zero = "0";
+
+				query += "start<=javascript:gs.dateGenerate('" + date + "','"+ zero + startTime + ":00:00')";
+				query += "^end>=javascript:gs.dateGenerate('" + date + "','"+ zero + (startTime + 1) + ":00:00')";
+
+				gr.addEncodedQuery(query);
+				gr.addQuery("active", true);
+
+				gs.info(gr.getEncodedQuery());
+
+				gr.query();
+
+				if (gr.next()) {
+					startTime++;
+				} else {
+					slotFound = true;
+					gs.info("SLOT FOUND");
+				}
+
+				if (startTime == maxTime) {
+					gdt.addDaysLocalTime(1);
+					curDaysAhead++;
+					startTime = 16;
+				}
+			}
+
+			if (slotFound) {
+
+				var zero2 = "";
+				if (startTime.length == 1)
+					zero2 = "0";
+
+				var start = new GlideDateTime(date + " " + (startTime - 1) + ":00:00");
+				var end = new GlideDateTime(date + " " + (startTime) + ":00:00");
+
+				//"2020-12-06T03:00:00+01:00" example
+
+				var internalStart = date + "T" + (startTime-1) + ":00:00+00:00";
+				var internalEnd = date + "T" + (startTime) + ":00:00+00:00";
+
+				var newEventGr = new GlideRecord('x_84446_kunolendar_calendar_events');
+				newEventGr.newRecord();
+				newEventGr.name = todoGr.short_description;
+				newEventGr.start = start;
+				newEventGr.end = end;
+				newEventGr.internal_start = internalStart;
+				newEventGr.internal_end = internalEnd;
+				newEventGr.status = eventInitialStatus;
+				newEventGr.active = true;
+				newEventGr.insert();
+			}
+
+		} catch (ex) {
+			new x_84446_vector.SlackMessageSender().error(ex);
+		}
+
+	},
+
+
+	populateCalendarEventGr: function (gr, item) {
+
+		var dtStart = this.getDateTime(item.start.dateTime);
+		var dtEnd = this.getDateTime(item.end.dateTime);
+
+		gr.id = item.id;
+		gr.name = item.summary;
+		gr.start = dtStart;
+		gr.end = dtEnd;
+		gr.payload = JSON.stringify(item, null, 2);
+		return gr;
+	},
+
+	getDateTime: function (dt) {
+
+		dtAr = dt.split("T");
+
+		var date = dtAr[0];
+		var time = dtAr[1].split("+")[0];
+
+		var gdtStartStr = date + " " + time;
+		return gdtStartStr;
+	},
+
+	type: 'Kunolendar'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>marek.polasik</sys_created_by>
+        <sys_created_on>2020-09-29 14:17:34</sys_created_on>
+        <sys_id>a9e4db25dbe3101006fc7b6039961920</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>Kunolendar</sys_name>
+        <sys_package display_value="Kuna Calendar" source="x_84446_kunolendar">f1a05759dbe7101006fc7b603996197d</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Kuna Calendar">f1a05759dbe7101006fc7b603996197d</sys_scope>
+        <sys_update_name>sys_script_include_a9e4db25dbe3101006fc7b6039961920</sys_update_name>
+        <sys_updated_by>marek.polasik</sys_updated_by>
+        <sys_updated_on>2020-12-10 20:18:22</sys_updated_on>
+    </sys_script_include>
+</record_update>
