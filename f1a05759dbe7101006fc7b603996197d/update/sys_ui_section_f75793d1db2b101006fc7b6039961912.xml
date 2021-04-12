@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="" section_id="f75793d1db2b101006fc7b6039961912" sys_domain="global" table="x_84446_kunolendar_calendar_events" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>payload</element>
+            <position>0</position>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-09-28 19:42:46</sys_created_on>
+            <sys_id>04679b15db2b101006fc7b603996193f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_84446_kunolendar_calendar_events" sys_domain="global" view="Default view">f75793d1db2b101006fc7b6039961912</sys_ui_section>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-09-28 19:42:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>id</element>
+            <position>1</position>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-09-28 19:42:46</sys_created_on>
+            <sys_id>00679b15db2b101006fc7b6039961940</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_84446_kunolendar_calendar_events" sys_domain="global" view="Default view">f75793d1db2b101006fc7b6039961912</sys_ui_section>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-09-28 19:42:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>name</element>
+            <position>2</position>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-09-28 19:42:46</sys_created_on>
+            <sys_id>80679b15db2b101006fc7b6039961940</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_84446_kunolendar_calendar_events" sys_domain="global" view="Default view">f75793d1db2b101006fc7b6039961912</sys_ui_section>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-09-28 19:42:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>3</position>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-09-28 19:42:46</sys_created_on>
+            <sys_id>04679b15db2b101006fc7b6039961940</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_84446_kunolendar_calendar_events" sys_domain="global" view="Default view">f75793d1db2b101006fc7b6039961912</sys_ui_section>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-09-28 19:42:46</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>end</element>
+            <position>4</position>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-09-28 19:42:46</sys_created_on>
+            <sys_id>84679b15db2b101006fc7b6039961940</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_84446_kunolendar_calendar_events" sys_domain="global" view="Default view">f75793d1db2b101006fc7b6039961912</sys_ui_section>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-09-28 19:42:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>5</position>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-09-28 19:42:46</sys_created_on>
+            <sys_id>08679b15db2b101006fc7b6039961940</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_84446_kunolendar_calendar_events" sys_domain="global" view="Default view">f75793d1db2b101006fc7b6039961912</sys_ui_section>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-09-28 19:42:46</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>start</element>
+            <position>6</position>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-09-28 19:42:46</sys_created_on>
+            <sys_id>88679b15db2b101006fc7b6039961940</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_84446_kunolendar_calendar_events" sys_domain="global" view="Default view">f75793d1db2b101006fc7b6039961912</sys_ui_section>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-09-28 19:42:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>7</position>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-09-28 19:42:46</sys_created_on>
+            <sys_id>0c679b15db2b101006fc7b6039961940</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_84446_kunolendar_calendar_events" sys_domain="global" view="Default view">f75793d1db2b101006fc7b6039961912</sys_ui_section>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-09-28 19:42:46</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>internal_start</element>
+            <position>8</position>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-12-04 13:09:05</sys_created_on>
+            <sys_id>e6cff2b6db34601006fc7b60399619ab</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_84446_kunolendar_calendar_events" sys_domain="global" view="Default view">f75793d1db2b101006fc7b6039961912</sys_ui_section>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-12-04 13:09:05</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>internal_end</element>
+            <position>9</position>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-12-04 13:09:40</sys_created_on>
+            <sys_id>97efb6b6db34601006fc7b6039961921</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_84446_kunolendar_calendar_events" sys_domain="global" view="Default view">f75793d1db2b101006fc7b6039961912</sys_ui_section>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-12-04 13:09:40</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>status</element>
+            <position>10</position>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-12-04 13:31:00</sys_created_on>
+            <sys_id>2fc48fbadb34601006fc7b6039961976</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_84446_kunolendar_calendar_events" sys_domain="global" view="Default view">f75793d1db2b101006fc7b6039961912</sys_ui_section>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-12-04 13:31:00</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>active</element>
+            <position>11</position>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-12-08 23:44:34</sys_created_on>
+            <sys_id>5a97fd54dbc9601006fc7b6039961983</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_84446_kunolendar_calendar_events" sys_domain="global" view="Default view">f75793d1db2b101006fc7b6039961912</sys_ui_section>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-12-08 23:44:34</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption/>
+            <header>false</header>
+            <name>x_84446_kunolendar_calendar_events</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-09-28 19:42:46</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>f75793d1db2b101006fc7b6039961912</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_84446_kunolendar_calendar_events</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Kuna Calendar" source="x_84446_kunolendar">f1a05759dbe7101006fc7b603996197d</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Kuna Calendar">f1a05759dbe7101006fc7b603996197d</sys_scope>
+            <sys_update_name>sys_ui_section_f75793d1db2b101006fc7b6039961912</sys_update_name>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-09-28 19:42:46</sys_updated_on>
+            <sys_user/>
+            <title>true</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

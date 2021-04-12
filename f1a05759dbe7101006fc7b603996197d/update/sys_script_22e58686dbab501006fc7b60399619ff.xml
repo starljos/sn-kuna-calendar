@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_84446_vector_slack_event</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="x_84446_vector_slack_event">actionSTARTSWITHevent_dzemor_^EQ<item endquery="false" field="action" goto="false" newquery="false" operator="STARTSWITH" or="false" value="event_dzemor_"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Drzemorek create event</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+	var isOperationCreation = (current.getValue('value') == 'yep') ? true : false;
+	var calendarEventCreatedOk = false;
+
+	var payload = current.getValue('payload');
+	var jsn = JSON.parse(payload);
+	var prevText = jsn.message.blocks[0].text.text;
+
+	// process time selection
+	var blockId = jsn.message.blocks[1].block_id;
+	var actionId = jsn.message.blocks[1].elements[0].action_id;
+
+	gs.info(prevText);
+	gs.info(blockId);
+	gs.info(actionId);
+
+	if (isOperationCreation){
+
+		try {
+
+			var today = new GlideDate() + "";
+
+			var body = {
+				"end": {
+					"dateTime": today+"T17:00:00+02:00"
+				},
+				"start": {
+					"dateTime": today+"T16:30:00+02:00"
+				},
+				"summary": "Drzemorek",
+				"colorId": "3"
+			};
+
+
+			var r = new sn_ws.RESTMessageV2('x_84446_kuna_cloud.Google Calendar API', 'POST /calendars/calendarId/events');
+			r.setStringParameterNoEscape('calendarId', 'mr.polasik@gmail.com');
+			r.setRequestBody(JSON.stringify(body));
+
+			var response = r.execute();
+			var responseBody = response.getBody();
+			var httpStatus = response.getStatusCode();
+			if (httpStatus == 200)
+				calendarEventCreatedOk = true;
+
+		} catch (ex) {
+			new x_84446_vector.SlackMessageSender().error(ex);
+		}
+	}
+
+
+	if (calendarEventCreatedOk || !isOperationCreation){
+
+		try {
+			//new x_84446_vector.SlackMessageSender().log("calendarEventCreatedOk " + calendarEventCreatedOk);
+
+			var url = current.getValue('webhook');
+
+			var body = {
+				"blocks": [
+					{
+						"type": "section",
+						"text": {
+							"type": "plain_text",
+							"text": prevText+"\nMarek: Jeszcze jak\nDrzemor w kalendarzu!",
+							"emoji": true
+						}
+					}
+				]
+			};
+
+			if (!isOperationCreation)
+				body.blocks[0].text.text = prevText + "\nMarek: Nope\nNo to spadaj na drzewo liście dmuchać banany prostować!";
+
+			body = JSON.stringify(body);
+
+			var rs = new sn_ws.RESTMessageV2();
+			rs.setRequestHeader("Content-Type", "application/json");
+			rs.setEndpoint(url);
+			rs.setHttpMethod("post");
+			rs.setRequestBody(body);
+
+			var responseS = rs.execute();
+			var responseBodyS = responseS.getBody();
+			var httpStatusS = responseS.getStatusCode();
+
+		} catch (e){
+			new x_84446_vector.SlackMessageSender().error(e);
+		}
+	}
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>marek.polasik</sys_created_by>
+        <sys_created_on>2020-09-30 21:42:18</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>22e58686dbab501006fc7b60399619ff</sys_id>
+        <sys_mod_count>16</sys_mod_count>
+        <sys_name>Drzemorek create event</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Kuna Calendar" source="x_84446_kunolendar">f1a05759dbe7101006fc7b603996197d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Kuna Calendar">f1a05759dbe7101006fc7b603996197d</sys_scope>
+        <sys_update_name>sys_script_22e58686dbab501006fc7b60399619ff</sys_update_name>
+        <sys_updated_by>marek.polasik</sys_updated_by>
+        <sys_updated_on>2020-10-02 13:58:15</sys_updated_on>
+        <template/>
+        <when>async</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=22e58686dbab501006fc7b60399619ff"/>
+</record_update>

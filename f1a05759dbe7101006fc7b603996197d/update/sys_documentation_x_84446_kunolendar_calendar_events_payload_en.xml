@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="payload" label="Payload" language="en" table="x_84446_kunolendar_calendar_events">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>payload</element>
+            <help/>
+            <hint/>
+            <label>Payload</label>
+            <language>en</language>
+            <name>x_84446_kunolendar_calendar_events</name>
+            <plural>Payloads</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>marek.polasik</sys_created_by>
+            <sys_created_on>2020-09-28 19:18:33</sys_created_on>
+            <sys_id>15d19b5ddbe7101006fc7b60399619ef</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Payload</sys_name>
+            <sys_package display_value="Kuna Calendar" source="x_84446_kunolendar">f1a05759dbe7101006fc7b603996197d</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Kuna Calendar">f1a05759dbe7101006fc7b603996197d</sys_scope>
+            <sys_update_name>sys_documentation_x_84446_kunolendar_calendar_events_payload_en</sys_update_name>
+            <sys_updated_by>marek.polasik</sys_updated_by>
+            <sys_updated_on>2020-09-28 19:18:33</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>
